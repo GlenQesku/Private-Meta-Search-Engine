@@ -39,7 +39,7 @@ This architecture ensures that search queries are completely anonymized. SearXNG
 ## How to use it
 - Install docker
 - ```sh
-  sudo apt install docler.io -y
+  sudo apt install docker.io -y
   
 - Install docker-compose
 - ```sh
@@ -54,7 +54,7 @@ This architecture ensures that search queries are completely anonymized. SearXNG
   ```
 - Edit the .env file to set the hostname and an email if you plan to run it online
 - ```sh
-  nano.env
+  nano .env
 - Generate the secret key
 - ```sh
   sed -i "s|ultrasecretkey|$(openssl rand -hex 32)|g" searxng/settings.yml
