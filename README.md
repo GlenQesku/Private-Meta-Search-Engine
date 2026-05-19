@@ -52,7 +52,7 @@ This architecture ensures that search queries are completely anonymized. SearXNG
   git clone https://github.com/GlenQesku/Private-Search-Engine.git
   cd Private-Search-Engine/searxng-docker
   ```
-- Edit the .env file to set the hostname and an email if you plan to run it online. Otherwise type into your browser http://localhost:8080/
+- Edit the .env file to set the hostname and an email if you plan to run it online. 
 - ```sh
   nano .env
 - Generate the secret key
@@ -65,4 +65,4 @@ This architecture ensures that search queries are completely anonymized. SearXNG
 - Run SearXNG in the background:
 - ```sh
   docker-compose up -d
-
+- Finally enter the domain name that you put in the .env file, into your borwser. If you didnt change the .env file, run it localy into your browser http://localhost:8080/ .
