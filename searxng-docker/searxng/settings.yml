@@ -1,0 +1,21 @@
+# see https://docs.searxng.org/admin/engines/settings.html#use-default-settings
+use_default_settings: true
+server:
+  # base_url is defined in the SEARXNG_BASE_URL environment variable, see .env and docker-compose.yml
+  secret_key: "2fbf3446b132af9bb7fead2e146bb531943bb36516eb86a8b320a4d4238715d2 "  # change this!
+  limiter: true  # can be disabled for a private instance
+  image_proxy: true
+  method: "GET"
+ui:
+  static_use_hash: true
+redis:
+  url: redis://redis:6379/0
+general:
+  debug: false
+  instance_name:  "Websiti i bobave"
+  privacypolicy_url: false
+  donation_url: https://docs.searxng.org/donate.html
+  contact_url: false
+  enable_metrics: true
+search:
+  autocomplete: "google"
