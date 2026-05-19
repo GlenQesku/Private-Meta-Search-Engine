@@ -2,6 +2,32 @@
 
 Create a new SearXNG  instance in five minutes using Docker
 
+# 🔍 Private Meta-Search Engine (SearXNG)
+
+## 📌 Overview
+This project is a self-hosted instance of **SearXNG**, a privacy-respecting, hackable meta-search engine. Deployed using Docker and Docker Compose on a Linux environment, it acts as a proxy between the user and external search engines (like Google, Bing, and DuckDuckGo). 
+
+This architecture ensures that search queries are completely anonymized. SearXNG generates random search profiles for every query, stripping out tracking data and preventing external engines from building an advertising profile based on IP addresses or search history.
+
+## 🚀 Key Features
+* **Total Anonymity:** Prevents data harvesting by proxying all requests through a single server IP.
+* **Ad-Free Experience:** Automatically strips advertisements and tracking scripts from search results.
+* **No Search History:** The server does not log queries or store user data.
+* **Containerized Deployment:** Built entirely with Docker for easy replication, isolated environments, and rapid teardown/rebuilds.
+* **Custom Configuration:** Modified `settings.yml` to optimize UI behavior (e.g., changing POST requests to GET for better browser navigation) and enable strict safe search.
+
+## 🛠️ Technology Stack
+* **Infrastructure:** Linux (Ubuntu), Docker, Docker Compose.
+* **Application:** SearXNG (Meta-Search Engine).
+* **Web Server / Reverse Proxy:** Caddy.
+* **Database / Cache:** Redis.
+* **Configuration:** YAML, Bash.
+
+## 📁 Repository Structure
+* `docker-compose.yml`: Defines the multi-container architecture (SearXNG, Redis, Caddy).
+* `settings.yml`: The core configuration file dictating search engine behavior, UI preferences, and enabled search modules.
+* `.env.example`: A template demonstrating the required environment variables (domain name, SSL email) without exposing live secrets.
+
 ## What is included ?
 
 | Name | Description | Docker image | Dockerfile |
@@ -11,65 +37,32 @@ Create a new SearXNG  instance in five minutes using Docker
 | [Redis](https://github.com/redis/redis) | In-memory database | [redis:alpine](https://hub.docker.com/_/redis) | [Dockerfile-alpine.template](https://github.com/docker-library/redis/blob/master/Dockerfile-alpine.template) |
 
 ## How to use it
-- [Install docker](https://docs.docker.com/install/)
-- [Install docker-compose](https://docs.docker.com/compose/install/) (be sure that docker-compose version is at least 1.9.0)
+- Install docker
+- ```sh
+  sudo apt install docler.io -y
+  
+- Install docker-compose
+- ```sh
+  sudo apt install docker-compose -y
+   ```
+    
 - Get searxng-docker
   ```sh
   cd /usr/local
-  git clone https://github.com/searxng/searxng-docker.git
-  cd searxng-docker
+  git clone https://github.com/GlenQesku/Private-Search-Engine.git
+  cd Private-Search-Engine/searxng-docker
   ```
-- Edit the [.env](https://github.com/searxng/searxng-docker/blob/master/.env) file to set the hostname and an email
-- Generate the secret key ```sed -i "s|ultrasecretkey|$(openssl rand -hex 32)|g" searxng/settings.yml```
-- Edit the [searxng/settings.yml](https://github.com/searxng/searxng-docker/blob/master/searxng/settings.yml) file according to your need
-- Check everything is working: ```docker-compose up```
-- Run SearXNG in the background: ```docker-compose up -d```
+- Edit the .env file to set the hostname and an email if you plan to run it online
+- ```sh
+  nano.env
+- Generate the secret key
+- ```sh
+  sed -i "s|ultrasecretkey|$(openssl rand -hex 32)|g" searxng/settings.yml
+  
+- Edit the searxng/settings.yml file according to your need
+- ```sh
+  nano settings.yml
+- Run SearXNG in the background:
+- ```sh
+  docker-compose up -d
 
-## How to access the logs
-To access the logs from all the containers use: `docker-compose logs -f`.
-
-To access the logs of one specific container:
-- Caddy: `docker-compose logs -f caddy`
-- SearXNG: `docker-compose logs -f searxng`
-- Redis: `docker-compose logs -f redis`
-
-### Start SearXNG with systemd
-
-You can skip this step if you don't use systemd.
-
-- ```cp searxng-docker.service.template searxng-docker.service```
-- edit the content of ```WorkingDirectory``` in the ```searxng-docker.service``` file (only if the installation path is different from /usr/local/searxng-docker)
-- Install the systemd unit:
-  ```sh
-  systemctl enable $(pwd)/searxng-docker.service
-  systemctl start searxng-docker.service
-  ```
-
-## Note on the image proxy feature
-
-The SearXNG image proxy is activated by default.
-
-The default [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) allow the browser to access to ```${SEARXNG_HOSTNAME}``` and ```https://*.tile.openstreetmap.org;```.
-
-If some users wants to disable the image proxy, you have to modify [./Caddyfile](https://github.com/searxng/searxng-docker/blob/master/Caddyfile). Replace the ```img-src 'self' data: https://*.tile.openstreetmap.org;``` by ```img-src * data:;```.
-
-## Multi Architecture Docker images
-
-Supported architecture:
-- amd64
-- arm64
-- arm/v7
-
-## How to update ?
-
-To update the SearXNG stack:
-
-```sh
-docker-compose pull
-docker-compose down
-docker-compose up
-```
-
-To update this `docker-compose.yml` file:
-
-Check out the newest version on github: [searxng/searxng-docker](https://github.com/searxng/searxng-docker).
