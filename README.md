@@ -61,7 +61,7 @@ This architecture ensures that search queries are completely anonymized. SearXNG
   
 - Edit the searxng/settings.yml file according to your need
 - ```sh
-  nano settings.yml
+  nano searxng/settings.yml
 - Run SearXNG in the background:
 - ```sh
   docker-compose up -d
