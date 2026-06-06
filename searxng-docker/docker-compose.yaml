@@ -4,6 +4,7 @@ services:
 
   caddy:
     container_name: caddy
+    restart: unless-stopped
     image: caddy:2-alpine
     network_mode: host
     volumes:
@@ -21,6 +22,7 @@ services:
 
   redis:
     container_name: redis
+    restart: unless-stopped
     image: "redis:alpine"
     command: redis-server --save "" --appendonly "no"
     networks:
@@ -36,6 +38,7 @@ services:
 
   searxng:
     container_name: searxng
+    restart: unless-stopped
     image: searxng/searxng:latest
     networks:
       - searxng
