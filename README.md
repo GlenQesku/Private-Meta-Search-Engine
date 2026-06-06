@@ -42,7 +42,7 @@ This architecture ensures that search queries are completely anonymized. SearXNG
 ## 📁 Repository Structure
 * `docker-compose.yml`: Defines the multi-container architecture (SearXNG, Redis, Caddy).
 * `settings.yml`: The core configuration file dictating search engine behavior, UI preferences, and enabled search modules.
-* `.env.example`: A template demonstrating the required environment variables (domain name, SSL email) without exposing live secrets.
+* `.env`: A template demonstrating the required environment variables (domain name, SSL email) without exposing live secrets.
 
 ## What is included ?
 
