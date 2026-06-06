@@ -9,6 +9,22 @@ This project is a self-hosted instance of **SearXNG**, a privacy-respecting, hac
 
 This architecture ensures that search queries are completely anonymized. SearXNG generates random search profiles for every query, stripping out tracking data and preventing external engines from building an advertising profile based on IP addresses or search history.
 
+ ## 🌐 Live Demo
+
+  You don't need to install anything to see it in action — a live instance is running here:
+
+### 👉 **[glenqesku.duckdns.org](https://glenqesku.duckdns.org)**
+
+  Search for anything and you'll get results aggregated from multiple engines
+  (Google, Bing, DuckDuckGo, and more) — with **no ads, no trackers, and no
+  saved search history**. Note the `https://` padlock: every request is proxied
+  through the server, so the upstream search engines only ever see the *server's*
+  IP, never yours. That's the whole privacy idea, working live.
+
+  > ⚠️ This is a small personal instance on a free-tier server, provided as a demo —
+  > it may be slow or occasionally offline. For real, reliable use, follow the
+  > steps below to spin up **your own** instance in about five minutes.
+
 ## 🚀 Key Features
 * **Total Anonymity:** Prevents data harvesting by proxying all requests through a single server IP.
 * **Ad-Free Experience:** Automatically strips advertisements and tracking scripts from search results.
@@ -66,3 +82,4 @@ This architecture ensures that search queries are completely anonymized. SearXNG
 - ```sh
   docker-compose up -d
 - Finally enter the domain name that you put in the .env file, into your borwser. If you didnt change the .env file, run it localy into your browser http://localhost:8080/ .
+  
