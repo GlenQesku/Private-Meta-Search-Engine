@@ -82,4 +82,8 @@ This architecture ensures that search queries are completely anonymized. SearXNG
 - ```sh
   docker-compose up -d
 - Finally enter the domain name that you put in the .env file, into your borwser. If you didnt change the .env file, run it localy into your browser http://localhost:8080/ .
+
+- When done or you want to shut it down:
+- ```sh
+  docker-compose down
   
